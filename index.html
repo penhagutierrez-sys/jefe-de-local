@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cierre del día · Jefe de Local</title>
+<meta name="description" content="Pantalla de cierre diario para el jefe de local de una ferretería: semáforo del día, estado del inventario y lectura de la demanda.">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="marca">Cierre del día<em> ·</em> Jefe de Local</span>
+  <span class="rol"><span class="av">JL</span>Jefe de Local</span>
+</div>
+
+<div class="demo">
+  <b>Demostración con datos inventados.</b>
+  Los nombres de las tiendas no existen y las cifras están escritas a mano.
+  No hay datos de ninguna empresa en este repositorio.
+</div>
+
+<main>
+  <div id="phead"></div>
+  <div id="cuerpo"></div>
+</main>
+
+<footer>
+  Una sola pantalla, un solo estado: la sucursal seleccionada. Todos los
+  porcentajes se derivan de las medidas del archivo de datos; ninguno viaja
+  precalculado. Donde falta el dato, la pantalla lo dice.
+</footer>
+
+<script src="datos-ejemplo.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

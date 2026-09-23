@@ -1,0 +1,386 @@
+/* ============================================================================
+   CIERRE DEL DÍA — hoja de estilo
+   ============================================================================
+   Un solo archivo, sin preprocesador y sin framework. La pantalla se abre en el
+   teléfono del jefe de local tanto como en el monitor de la oficina, así que todo
+   se apila en una columna bajo los 900 px.
+   ========================================================================== */
+
+:root {
+  /* marca */
+  --azul-prof: #0B2545;      /* superficies de mando */
+  --azul-cool: #1D4E89;      /* jerarquía intermedia */
+  --turquesa: #17B8A6;       /* el dato y la acción */
+
+  /* superficies — el gris lleva una gota de azul para pertenecer a la misma
+     familia que el azul profundo, en vez de leerse como un gris neutro pegado */
+  --bg: #EEF2F6;  --surface: #FFFFFF;  --surface-2: #F7FAFC;  --surface-3: #EAEFF4;
+  --line: #DDE5EC;  --line-2: #C3CFDA;
+
+  /* texto */
+  --tx: #132132;  --tx-2: #3D4756;  --tx-3: #7B8794;
+
+  /* semáforo — re-templado hacia el azul: el rojo tira a carmín y el ámbar a
+     dorado, para que no peleen con el azul profundo. Siguen distinguiéndose
+     entre sí, que es lo único que un semáforo debe garantizar. */
+  --ok: #0E8A6B;     --ok-bg: #E4F6F1;     --ok-bd: #A9DECF;
+  --cerca: #1D4E89;  --cerca-bg: #E8EFF8;  --cerca-bd: #BFD3E9;
+  --medio: #B8760B;  --medio-bg: #FDF3E2;  --medio-bd: #EFD9AE;
+  --bajo: #C8384F;   --bajo-bg: #FDEEF0;   --bajo-bd: #F3C9D0;
+  --sd: #3D4756;     --sd-bg: #EAEFF4;     --sd-bd: #CFD8E2;
+
+  --r: 10px;
+  --sombra: 0 1px 2px rgba(11, 37, 69, .06), 0 4px 16px rgba(11, 37, 69, .05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0 }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg); color: var(--tx);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─────────────────────────── barra superior ─────────────────────────── */
+.topbar {
+  background: var(--azul-prof); color: #fff;
+  padding: 14px 24px; display: flex; align-items: center; gap: 14px;
+}
+.topbar .marca { font-weight: 700; letter-spacing: .01em; font-size: 15px }
+.topbar .marca em { font-style: normal; color: var(--turquesa) }
+.topbar .rol {
+  margin-left: auto; display: flex; align-items: center; gap: 9px;
+  font-size: 13px; color: #B9C7D6;
+}
+.topbar .av {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--turquesa); color: var(--azul-prof);
+  display: grid; place-items: center; font-weight: 700; font-size: 12px;
+}
+.demo {
+  background: var(--medio-bg); border-bottom: 1px solid var(--medio-bd);
+  color: #7A4E06; font-size: 13px; padding: 9px 24px; text-align: center;
+}
+.demo b { color: #5E3C05 }
+
+main { max-width: 1240px; margin: 0 auto; padding: 22px 24px 60px }
+
+/* ─────────────────────────── encabezado ─────────────────────────── */
+#phead { margin-bottom: 18px }
+.ph-tit { display: flex; align-items: center; gap: 11px; flex-wrap: wrap }
+h1 { font-size: 27px; font-weight: 700; letter-spacing: -.01em }
+.pill {
+  font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.pill.n-ok { background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok-bd) }
+.pill.n-cerca { background: var(--cerca-bg); color: var(--cerca); border: 1px solid var(--cerca-bd) }
+.pill.n-medio { background: var(--medio-bg); color: var(--medio); border: 1px solid var(--medio-bd) }
+.pill.n-bajo { background: var(--bajo-bg); color: var(--bajo); border: 1px solid var(--bajo-bd) }
+.pill.n-sd { background: var(--sd-bg); color: var(--sd); border: 1px solid var(--sd-bd) }
+
+.sub {
+  margin-top: 6px; font-size: 13px; color: var(--tx-3);
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+}
+.sub .cif {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 3px 10px;
+}
+.sub .cif b { color: var(--tx-2) }
+.sub .cif.alerta {
+  background: var(--medio-bg); border-color: var(--medio-bd); color: #7A4E06;
+}
+
+/* ─────────────────────────── el semáforo grande ─────────────────────────── */
+.hero {
+  background: var(--surface); border: 1px solid var(--line);
+  border-left: 5px solid var(--sd); border-radius: var(--r);
+  box-shadow: var(--sombra); padding: 20px 24px; margin-bottom: 16px;
+}
+.hero-ok { border-left-color: var(--ok) }
+.hero-cerca { border-left-color: var(--cerca) }
+.hero-medio { border-left-color: var(--medio) }
+.hero-bajo { border-left-color: var(--bajo) }
+.hero-sd { border-left-color: var(--sd) }
+
+.hero-cuerpo { display: flex; align-items: center; gap: 28px }
+.hero-num { flex: 1; min-width: 0 }
+.hero-num .et {
+  display: block; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .09em; color: var(--tx-3); font-weight: 700;
+}
+.hero-num .v {
+  display: block; font-size: 46px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1.1; margin: 2px 0 6px;
+}
+.hero-num .fr { font-size: 15px; color: var(--tx-2); line-height: 1.45 }
+.hero-num .fr b { color: var(--tx) }
+
+.anillo { position: relative; width: 132px; height: 132px; flex: none }
+.anillo svg { width: 100%; height: 100%; transform: rotate(-90deg) }
+.a-bg { fill: none; stroke: var(--surface-3); stroke-width: 11 }
+.a-v {
+  fill: none; stroke-width: 11; stroke-linecap: round;
+  transition: stroke-dashoffset .9s cubic-bezier(.22, 1, .36, 1);
+}
+.a-v.n-ok { stroke: var(--ok) }
+.a-v.n-cerca { stroke: var(--cerca) }
+.a-v.n-medio { stroke: var(--medio) }
+.a-v.n-bajo { stroke: var(--bajo) }
+.a-v.n-sd { stroke: var(--line-2) }
+.a-tx {
+  position: absolute; inset: 0; display: grid; place-content: center;
+  text-align: center; line-height: 1.15;
+}
+.a-tx b { font-size: 24px; font-weight: 700 }
+.a-tx small { display: block; font-size: 10.5px; color: var(--tx-3) }
+
+.hero-lec {
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+  font-size: 14.5px; color: var(--tx-2); line-height: 1.5;
+}
+.hero-lec b { color: var(--tx) }
+
+.hero-pie {
+  margin-top: 14px; display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap;
+}
+.sem-man {
+  background: var(--azul-prof); color: #fff; border-radius: 8px;
+  padding: 11px 16px; flex: none; min-width: 240px;
+}
+.sem-man .et {
+  display: block; font-size: 10.5px; text-transform: uppercase;
+  letter-spacing: .09em; color: #9FB4C8; font-weight: 700;
+}
+.sem-man .v { display: block; font-size: 25px; font-weight: 700; margin: 1px 0 2px }
+.sem-man .d { font-size: 12px; color: #B9C7D6; line-height: 1.35 }
+.hero-mes { flex: 1; min-width: 260px }
+.sem-mes { font-size: 13.5px; color: var(--tx-2); line-height: 1.5 }
+.sem-mes b { color: var(--tx) }
+.sem-mes .hueco { color: var(--medio); font-weight: 600 }
+
+/* ─────────────────────────── tarjetas KPI ─────────────────────────── */
+.dia-kpis {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 12px; margin-bottom: 16px;
+}
+.dkpi {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 13px 16px; box-shadow: var(--sombra);
+}
+.dkpi .lb {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .07em;
+  color: var(--tx-3); font-weight: 700;
+}
+.dkpi .vl {
+  font-size: 25px; font-weight: 700; letter-spacing: -.01em; margin: 4px 0 3px;
+}
+.dkpi .sb { font-size: 12px; color: var(--tx-3); line-height: 1.35 }
+.dkpi.ok .vl { color: var(--ok) }
+.dkpi.bajo .vl { color: var(--bajo) }
+.sd { color: var(--tx-3); font-style: italic }
+.dkpi .vl .sd { font-size: 19px }
+
+/* ─────────────────────────── cajas ─────────────────────────── */
+.caja {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r); padding: 17px 20px; box-shadow: var(--sombra);
+  margin-bottom: 16px;
+}
+.caja h3 { font-size: 16px; font-weight: 700; margin-bottom: 13px }
+.caja h3 .h3s {
+  display: block; font-size: 12px; font-weight: 400;
+  color: var(--tx-3); margin-top: 2px;
+}
+.caja .pie {
+  margin-top: 13px; padding-top: 11px; border-top: 1px solid var(--line);
+  font-size: 12.5px; color: var(--tx-3); line-height: 1.5;
+}
+.caja .pie b { color: var(--tx-2) }
+
+/* selector de ámbito */
+.segs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 15px }
+.seg {
+  font: inherit; font-size: 12.5px; cursor: pointer;
+  background: var(--surface-2); border: 1px solid var(--line);
+  color: var(--tx-2); padding: 5px 13px; border-radius: 999px;
+  transition: background .12s, border-color .12s;
+}
+.seg:hover { background: var(--surface-3); border-color: var(--line-2) }
+.seg.on {
+  background: var(--azul-prof); border-color: var(--azul-prof);
+  color: #fff; font-weight: 600;
+}
+
+/* ─────────────────────────── la torta ─────────────────────────── */
+.t-flex { display: flex; gap: 30px; align-items: center; flex-wrap: wrap }
+.t-don { position: relative; width: 190px; height: 190px; flex: none }
+.t-don svg { width: 100%; height: 100% }
+.t-bg { fill: none; stroke: var(--surface-3); stroke-width: 13 }
+.t-arc {
+  fill: none; stroke-width: 13;
+  transition: stroke-dasharray .85s cubic-bezier(.22, 1, .36, 1);
+}
+.e-liq { stroke: var(--bajo) }      .t-pt.e-liq { background: var(--bajo) }
+.e-ven { stroke: var(--medio) }     .t-pt.e-ven { background: var(--medio) }
+.e-inm { stroke: #7B8794 }          .t-pt.e-inm { background: #7B8794 }
+.e-proy { stroke: var(--azul-cool) }.t-pt.e-proy { background: var(--azul-cool) }
+.e-reg { stroke: var(--turquesa) }  .t-pt.e-reg { background: var(--turquesa) }
+.t-c {
+  position: absolute; inset: 0; display: grid; place-content: center;
+  text-align: center; line-height: 1.2;
+}
+.t-c b { font-size: 21px; font-weight: 700 }
+.t-c small { display: block; font-size: 10.5px; color: var(--tx-3) }
+
+.t-lgs { flex: 1; min-width: 300px; display: grid; gap: 7px }
+.t-lg {
+  display: grid; grid-template-columns: 11px 1fr auto;
+  gap: 11px; align-items: center;
+}
+.t-pt { width: 11px; height: 11px; border-radius: 3px }
+.t-n { font-size: 13.5px; font-weight: 600 }
+.t-n em {
+  display: block; font-style: normal; font-size: 11.5px;
+  font-weight: 400; color: var(--tx-3);
+}
+.t-v { font-size: 14px; font-weight: 700; text-align: right }
+.t-v em {
+  display: block; font-style: normal; font-size: 11.5px;
+  font-weight: 400; color: var(--tx-3);
+}
+.vacio { color: var(--tx-3); font-size: 13px; font-style: italic }
+
+/* ─────────────────── las dos lecturas del día ─────────────────── */
+.dos { display: grid; grid-template-columns: 1.25fr 1fr; gap: 16px }
+.dos .caja { margin-bottom: 16px }
+
+.et-f {
+  display: grid; grid-template-columns: 116px 1fr 104px 104px;
+  gap: 11px; align-items: center; padding: 7px 0;
+  border-bottom: 1px solid var(--surface-3); font-size: 13px;
+}
+.et-f:last-of-type { border-bottom: 0 }
+.et-f .n { font-weight: 600 }
+.et-f .b { background: var(--surface-3); border-radius: 999px; height: 8px; overflow: hidden }
+.et-f .b i { display: block; height: 100%; background: var(--azul-cool); border-radius: 999px }
+.et-f .v { text-align: right; font-weight: 700 }
+.et-f .p { text-align: right; color: var(--tx-3); font-size: 12px }
+.et-f.et-neg .v, .et-f.et-neg .p { color: var(--bajo) }
+.et-f.et-neg .n { color: var(--bajo) }
+
+.cl-b {
+  display: flex; height: 30px; border-radius: 6px;
+  overflow: hidden; margin-bottom: 13px;
+}
+.cl-final { background: var(--turquesa) }
+.cl-emp { background: var(--azul-cool) }
+.cl-l { display: grid; gap: 11px }
+.cl-l span { font-size: 13px; color: var(--tx-2) }
+.cl-l span b { color: var(--tx); font-size: 15px }
+.cl-l span em {
+  display: block; font-style: normal; font-size: 11.5px; color: var(--tx-3);
+}
+
+/* ─────────────────────────── tarjetas de tienda ─────────────────────────── */
+.dia-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: 13px;
+}
+.dia-t {
+  font: inherit; text-align: left; cursor: pointer; width: 100%;
+  background: var(--surface); border: 1px solid var(--line);
+  border-top: 3px solid var(--sd); border-radius: var(--r);
+  padding: 14px 16px; box-shadow: var(--sombra);
+  transition: transform .12s, box-shadow .12s;
+}
+.dia-t:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(11, 37, 69, .07), 0 10px 26px rgba(11, 37, 69, .1);
+}
+.sem-ok { border-top-color: var(--ok) }
+.sem-cerca { border-top-color: var(--cerca) }
+.sem-medio { border-top-color: var(--medio) }
+.sem-bajo { border-top-color: var(--bajo) }
+.sem-sd { border-top-color: var(--sd) }
+
+.dt-top { display: flex; align-items: baseline; gap: 9px; margin-bottom: 7px }
+.dt-top b { font-size: 15px; font-weight: 700 }
+.dt-c { margin-left: auto; font-size: 17px; font-weight: 700; text-align: right }
+.dt-c em {
+  display: block; font-style: normal; font-size: 10px;
+  font-weight: 400; color: var(--tx-3);
+}
+.dt-c.ok { color: var(--ok) }      .dt-c.cerca { color: var(--cerca) }
+.dt-c.medio { color: var(--medio) }.dt-c.bajo { color: var(--bajo) }
+.dt-c.sd { color: var(--tx-3) }
+
+.dt-v { font-size: 22px; font-weight: 700; letter-spacing: -.01em }
+.dt-v small { font-size: 12px; font-weight: 400; color: var(--tx-3); margin-left: 6px }
+.dt-f { font-size: 12px; color: var(--tx-3); margin: 3px 0 2px }
+.dt-f .up { color: var(--ok); font-weight: 600 }
+.dt-f .dn { color: var(--bajo); font-weight: 600 }
+.dt-part { font-size: 11.5px; color: var(--tx-3) }
+
+.dt-sp { display: flex; align-items: flex-end; gap: 3px; height: 32px; margin: 10px 0 }
+.dt-sp span { flex: 1; background: var(--cerca-bd); border-radius: 2px 2px 0 0 }
+.dt-sp span:last-child { background: var(--azul-cool) }
+
+.dt-m {
+  display: flex; gap: 14px; font-size: 12px; color: var(--tx-3);
+  padding: 8px 0; border-top: 1px solid var(--surface-3);
+  border-bottom: 1px solid var(--surface-3);
+}
+.dt-m b { color: var(--tx) }
+.dt-et {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--tx-3); font-weight: 700; margin: 9px 0 5px;
+}
+.dc {
+  display: grid; grid-template-columns: 74px 1fr 34px 56px;
+  gap: 7px; align-items: center; font-size: 11.5px; margin-bottom: 4px;
+}
+.dc .n { color: var(--tx-2) }
+.dc .b { background: var(--surface-3); border-radius: 999px; height: 6px; overflow: hidden }
+.dc .b i { display: block; height: 100%; background: var(--turquesa); border-radius: 999px }
+.dc .p { text-align: right; font-weight: 600 }
+.dc .f { text-align: right; color: var(--tx-3) }
+.dc.neg .n, .dc.neg .p { color: var(--bajo) }
+
+.dt-man {
+  margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--surface-3);
+  font-size: 12px; color: var(--tx-3);
+}
+.dt-man b { color: var(--azul-prof); font-size: 13.5px }
+
+footer {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px 40px;
+  font-size: 12px; color: var(--tx-3); line-height: 1.6;
+}
+
+/* ─────────────────────────── pantallas chicas ───────────────────────────
+   El archivo se abre en el teléfono tanto como en el monitor: bajo 900 px todo
+   se apila y el anillo baja bajo la cifra, en vez de competir con ella. */
+@media (max-width: 1080px) {
+  .dia-kpis { grid-template-columns: repeat(3, 1fr) }
+  .dos { grid-template-columns: 1fr }
+}
+@media (max-width: 720px) {
+  main, footer { padding-left: 16px; padding-right: 16px }
+  h1 { font-size: 22px }
+  .hero { padding: 16px }
+  .hero-cuerpo { flex-direction: column; align-items: flex-start; gap: 14px }
+  .hero-num .v { font-size: 36px }
+  .anillo { width: 108px; height: 108px; align-self: center }
+  .dia-kpis { grid-template-columns: repeat(2, 1fr) }
+  .sem-man { min-width: 0; width: 100% }
+  .t-flex { gap: 18px }
+  .t-don { width: 150px; height: 150px; margin: 0 auto }
+  .t-lgs { min-width: 0 }
+  .et-f { grid-template-columns: 88px 1fr 88px; }
+  .et-f .p { display: none }
+  .topbar { padding: 12px 16px }
+  .demo { padding: 9px 16px; text-align: left }
+}

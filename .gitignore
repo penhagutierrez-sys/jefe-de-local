@@ -1,0 +1,23 @@
+# La barrera va desde el primer commit, no después: un archivo de datos que entra
+# una vez queda en el historial para siempre, aunque el commit siguiente lo borre.
+# En este repositorio no hay ni puede haber datos de ninguna empresa.
+
+*.csv
+*.xlsx
+*.xlsm
+*.xls
+*.db
+*.sqlite
+
+.env
+.env.*
+!.env.example
+
+salidas/
+data/
+__pycache__/
+node_modules/
+
+Thumbs.db
+desktop.ini
+.DS_Store
